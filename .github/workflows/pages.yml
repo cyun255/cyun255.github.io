@@ -20,13 +20,10 @@ jobs:
           # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
           # Ref: https://github.com/actions/setup-node#supported-version-syntax
           node-version: "22.15.1"
-      - name: Cache NPM dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-cache
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache
+      - name: Install pandoc
+        run: sudo apt install pandoc
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
       - name: Install Dependencies
         run: pnpm install
       - name: Build
